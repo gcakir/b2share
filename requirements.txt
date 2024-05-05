@@ -32,7 +32,7 @@ cffi==1.15.1              # via cryptography
 chardet==2.3.0            # via binaryornot, doschema
 click==6.6                # via cookiecutter, dojson, doschema, flask
 cookiecutter==1.4.0       # via invenio-base
-cryptography==39.0.0       # via invenio-accounts, invenio-oauthclient, sqlalchemy-utils
+cryptography==42.0.6       # via invenio-accounts, invenio-oauthclient, sqlalchemy-utils
 datacite==1.1.1
 dcxml==0.1.0
 decorator==4.0.10         # via validators

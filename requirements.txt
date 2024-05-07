@@ -145,7 +145,7 @@ validators==0.11.0        # via wtforms-components
 vine==1.1.4               # via amqp
 webargs==1.4.0            # via invenio-files-rest, invenio-oaiserver, invenio-records-rest
 webassets==0.12.0         # via flask-assets, invenio-assets
-werkzeug==0.11.11         # via flask, flask-kvsession, flask-wtf, jsonresolver
+werkzeug==3.0.3         # via flask, flask-kvsession, flask-wtf, jsonresolver
 whichcraft==0.4.0         # via cookiecutter
 wtforms-alchemy==0.16.1   # via invenio-oauth2server
 wtforms-components==0.10.0  # via wtforms-alchemy

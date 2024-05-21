@@ -129,7 +129,7 @@ python-geoip==1.2         # via invenio-stats
 pytz==2016.7              # via babel, celery, invenio-indexer
 redis==2.10.5             # via invenio-accounts, invenio-celery, invenio-queues
 requests-oauthlib==0.7.0  # via flask-oauthlib
-requests==2.12.2          # via datacite, easywebdav, invenio-search, requests-oauthlib
+requests==2.32.0          # via datacite, easywebdav, invenio-search, requests-oauthlib
 robot-detection==0.4      # via invenio-stats
 simplejson==3.10.0        # via dojson
 simplekv==0.10.0          # via flask-kvsession

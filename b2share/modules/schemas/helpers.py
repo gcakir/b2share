@@ -23,7 +23,7 @@ import json
 import re
 import os
 from functools import lru_cache
-from urllib.error import URLError
+from urllib.error import URLError, HTTPError
 from urllib.request import urlopen
 
 from invenio_db import db
@@ -39,14 +39,38 @@ from .errors import InvalidJSONSchemaError, RootSchemaDoesNotExistError, \
 
 @lru_cache(maxsize=1000)
 def resolve_json(url):
-    """Load the given URL as a JSON."""
-    resource = urlopen(url)
-    encoding = resource.headers.get_content_charset()
-    schema_bytes = resource.read()
-    if encoding is None:
-        encoding = chardet.detect(schema_bytes)['encoding']
-    json_schema = json.loads(schema_bytes.decode(encoding))
+    """Load the given URL as a JSON from the cached schema file. Useful when the URL is unreachable"""
+
+    # Define the local path to the cached schema
+    local_path = '/eudat/b2share'  # Adjust path as necessary
+
+    # Create a filename from the url, replacing protocol and slashes
+    filename = url.replace('http://', '').replace('https://', '').replace('/', '_') + '.json'
+
+    try:
+        # Try to load the schema from a local file
+        with open(os.path.join(local_path, filename), 'r', encoding='utf-8') as f:
+            json_schema = json.load(f)
+    except FileNotFoundError:
+        # If local file is not available, try to fetch from the web
+        try:
+            resource = urlopen(url)
+            encoding = resource.headers.get_content_charset()
+            schema_bytes = resource.read()
+            if encoding is None:
+                encoding = chardet.detect(schema_bytes)['encoding']
+            json_schema = json.loads(schema_bytes.decode(encoding))
+
+            # Save the schema locally for future use
+            with open(os.path.join(local_path, filename), 'w', encoding='utf-8') as f:
+                json.dump(json_schema, f)
+        except HTTPError as e:
+            raise Exception(f'HTTP Error when trying to access URL "{url}": {str(e)}') from e
+        except URLError as e:
+            raise Exception(f'URL Error when trying to access URL "{url}": {str(e)}') from e
+
     return json_schema
+
 
 
 def validate_json_schema(new_json_schema, prev_schemas, options={}):

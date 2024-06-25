@@ -34,7 +34,7 @@ from .errors import EpicPIDError
 
 
 def create_handle(handle_client, handle_prefix, location,
-                  checksum=None, fixed=False):
+                  checksum=None, fixed=False, fdo_entries=None):
     """Create a new handle for a file, using the B2HANDLE library."""
 
     try:
@@ -45,6 +45,8 @@ def create_handle(handle_client, handle_prefix, location,
         if checksum:
             eudat_entries['EUDAT/CHECKSUM'] = str(checksum)
             eudat_entries['EUDAT/CHECKSUM_TIMESTAMP'] = datetime.now().isoformat()
+        if isinstance(fdo_entries, dict):
+            eudat_entries.update(fdo_entries)
         handle = handle_client.generate_and_register_handle(
             prefix=handle_prefix, location=location, checksum=checksum,
             **eudat_entries)

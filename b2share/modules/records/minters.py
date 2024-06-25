@@ -92,8 +92,15 @@ def b2share_pid_minter(rec_pid, data):
     url = make_record_url(rec_pid.pid_value)
     throw_on_failure = current_app.config.get('CFG_FAIL_ON_MISSING_PID', True)
 
+    fdo_community_extension = None
+
+    community = data.get('community', '')
+    if community == 'af4db316-c781-4085-a166-a84bffefc15d':
+        fdo_community_extension = (data.get('community_specific', {}).
+                                   get('5f38f74f-5af1-4759-891d-470f53dbfb0f    ', None))
+
     try:
-        pid = current_handle.create_handle(url)
+        pid = current_handle.create_handle(url, fdo_entries=fdo_community_extension)
         if pid is None:
             raise EpicPIDError("EPIC PID allocation failed")
         data['_pid'].append({'value': pid, 'type': 'ePIC_PID'})

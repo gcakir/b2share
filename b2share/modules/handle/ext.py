@@ -51,7 +51,7 @@ class _B2ShareHandleState(object):
 
 
     def create_handle(self, location, checksum=None, fixed=False,
-                      fake=None):
+                      fake=None, fdo_entries=None):
         """Create a new handle for a file, using the B2HANDLE library."""
         fake = fake or current_app.config.get('TESTING', False) \
                 or current_app.config.get('FAKE_EPIC_PID', False)
@@ -62,7 +62,7 @@ class _B2ShareHandleState(object):
             return create_fake_handle(location)
         elif self.handle_client:
             return create_handle(self.handle_client, self.handle_prefix,
-                          location, checksum, fixed)
+                                 location, checksum, fixed, fdo_entries=fdo_entries)
         else:
             # assume EPIC API
             return create_epic_handle(location, checksum)

@@ -5,6 +5,7 @@ html, body {
   margin: 0px;
   padding: 0px;
   color: #333;
+  width:100vw;
 }
 
 html {
@@ -249,14 +250,24 @@ input:focus, select:focus, textarea:focus, button:focus, a:focus {
   font-size:14px;
   color: #c73118;
   overflow: auto;
-  white-space: nowrap;
 }
 
 .doi {
   font-size:14px;
   color: #0027ff;
   overflow: auto;
-  white-space: nowrap;
+}
+
+@media (min-width: 1200px) {
+  .doi, .epic_pid {
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 1200px) {
+  .doi, .epic_pid {
+    word-break: break-all;
+  }
 }
 
 .checksum {
@@ -441,9 +452,34 @@ a.navbar-brand {
   display: table;
   padding: 15px;
 }
-@media (min-width: 768px) {
+
+.navbar-center {
+  align-content: flex-start;
+}
+
+@media (min-width: 890px) {
   .nav-search {
     margin-right: 220px;
+  }
+
+  .logo-container {
+    width: 80%;
+    margin-left: 175px;
+  }
+}
+
+@media (max-width: 890px) {
+  .logo-container {
+    padding-left: 20px;
+    width: 100%;
+  }
+
+  .logo-container>a>img {
+    max-width: 70%;
+  }
+
+  .logo-container>a>img:first-child {
+    max-width: 15%;
   }
 }
 
@@ -451,11 +487,37 @@ a.navbar-brand {
     text-align: center;
 }
 
-.navbar-nav {
-  margin-top: 0.5em;
+@media (min-width: 768px) {
+  .navbar-nav {
+    margin-top: 0.5em;
+    margin-left: 155px;
+  }
+
+  .navbar-lower {
+    width: 90%;
+  }
+
+  .navbar-nav.user {
+    padding-right: 1em;
+  }
 }
-.navbar-nav.user {
-  padding-right: 1em;
+
+@media (max-width: 768px) {
+  .navbar-nav {
+    margin-left: 0px !important;
+    margin-top: 0.5em;
+    width: 100%;
+  }
+
+  .navbar-lower {
+    width: 100%;
+  }
+}
+
+.navbar-lower {
+  background: white no-repeat right top;
+  white-space: nowrap;
+  display: table;
 }
 
 .navbar-default .navbar-nav >.open .dropdown-toggle.btn-primary {
@@ -489,6 +551,15 @@ a.navbar-brand {
     float:right;
   }
 }
+@media (max-width: 768px) {
+  .navbar-nav.user {
+    float: left;
+  }
+
+  .navbar-hidden {
+    height: 0;
+  }
+}
 
 .navbar-default .navbar-nav > li > a {
     font-size: 15px;
@@ -500,9 +571,12 @@ a.navbar-brand {
     font-weight: 400;
 }
 
-.header-nav .navbar-header {
-  min-height: 120px;
+@media (min-width: 768px) {
+  .header-nav .navbar-header {
+    min-height: 120px;
+  }
 }
+
 .header-nav .in .navbar-nav {
   margin-top: 5px;
 }
@@ -694,7 +768,6 @@ a.navbar-brand {
 }
 
 .pid-number {
-    white-space: nowrap;
     overflow: auto;
     border: none;
     padding: 0;
@@ -727,6 +800,23 @@ a.navbar-brand {
 /*****************************************************************************/
 /* communities */
 
+.blur-overlay {
+  position: absolute;
+  top: -3px;
+  left: 0;
+  right: 0;
+  bottom: -10px;
+  background: linear-gradient(transparent 65%, rgba(255, 255, 255, 1) 95%, rgba(255, 255, 255, 1) 10%, rgba(255, 255, 255, 1) 100%);
+  pointer-events: none; /* Makes it non-interactive so users can still select the text underneath */
+  box-sizing: border-box; /* Ensure that padding and border are included in total width/height */
+}
+
+.community {
+  padding-bottom: 5px;
+  position: relative; /* Needed to position child elements like .blur-overlay relative to this container. */
+  overflow: hidden;   /* Any child content that's outside the boundaries of .community will be clipped (not displayed). */
+}
+
 .community-small {
   background-color: white;
   border: 1px solid #eee;
@@ -735,13 +825,42 @@ a.navbar-brand {
   color: black;
   display: block;
   font-weight: bold;
-  height: 8em;
-  max-width: 10em;
+  min-height: 11em;
   overflow: hidden;
   padding: 10px 4px;
   text-align: center;
   margin-bottom: 15px;
 }
+
+@media (max-width: 992px) {
+  .community-small {
+    width: 100%;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  .community-small {
+    width: 100%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .community-small {
+    width: 10em;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  .community-small-wrapper {
+    float:right;
+  }
+}
+
+/* @media (min-width: 992px) {
+  .community-small-wrapper {
+    float:right;
+  }
+} */
 
 .community-small:hover {
   border: 1px solid gray;
@@ -762,6 +881,7 @@ a.navbar-brand {
 .community-small img.logo {
   max-width: 96px;
   max-height: 64px;
+  margin-top: 15px;
 }
 
 .community-small.inactive img{
@@ -1098,8 +1218,8 @@ a.navbar-brand {
   padding: 0.5em 0;
   border-bottom: 1px solid #ddd;
   font-weight: bold;
-  margin-top: 0.5em,
-  margin-bottom: 0.5em
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 }
 .filelist .files {
     max-height: 800px; /* about 20 single line files */
@@ -1239,4 +1359,76 @@ ul.rw-list>li.rw-list-option.rw-state-focus,.rw-selectlist>li.rw-list-option.rw-
 
 .v-spacer {
     height: 0.5em;
+}
+
+/* STATS */
+
+.community-statistics {
+  background-color: white;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #eee !important;
+  color: #000;
+  display: block;
+  overflow: hidden;
+  padding: 10px 4px;
+  text-align: left;
+  margin-bottom: 15px;
+  min-height: 11em;
+}
+
+@media (max-width: 1200px) {
+  .community-statistics {
+    margin: 15px 15px 15px 15px;
+  }
+
+  .statistic-wrapper {
+    padding: 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  .community-statistics {
+    max-width: 25em;
+    margin-left: 0px;
+  }
+
+  .statistic-wrapper {
+    max-width: 25em;
+  }
+}
+
+.statistic-row {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+  margin: 0 0px 10px 0px;
+}
+
+.statistic-row>p {
+  min-width: 33%;
+}
+
+.statistic-row>p>span:last-child {
+  font-size: 20px;
+  font-weight: normal;
+}
+
+.stat {
+  display: flex;
+  margin: 0px 10px;
+  padding: 2px 0px;
+  border-top: 1px solid #eee;
+}
+
+.stat>span {
+  flex:1;
+}
+
+.stat>span:first-child {
+  padding-left: 2px;
+}
+
+.stat>span:last-child {
+  text-align: center;
 }

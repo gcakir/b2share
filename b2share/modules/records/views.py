@@ -448,6 +448,8 @@ class B2ShareRecordResource(RecordResource):
             for rec_pid in record['_pid']:
                 if rec_pid['type'] == 'DOI':
                     doi = rec_pid
+            if doi is None:
+                return self.make_response(pid, record, links_factory=self.links_factory)
             doi_pid = PersistentIdentifier.get('doi', doi['value'])
             if doi_pid:
                 from .serializers import datacite_v44

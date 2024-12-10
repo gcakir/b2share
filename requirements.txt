@@ -58,7 +58,7 @@ flask-principal==0.4.0    # via flask-security
 flask-security==3.0.0     # via invenio-accounts
 flask-sqlalchemy==2.1     # via flask-alembic, invenio-db
 flask-wtf==0.13.1         # via flask-security, invenio-accounts, invenio-files-rest, invenio-oauth2server
-flask==0.11.1             # via flask-alembic, flask-assets, flask-babelex, flask-breadcrumbs, flask-celeryext, flask-collect, flask-cors, flask-kvsession, flask-login, flask-mail, flask-menu, flask-oauthlib, flask-principal, flask-security, flask-sqlalchemy, flask-wtf, invenio-access, invenio-accounts, invenio-assets, invenio-base, invenio-celery, invenio-config, invenio-db, invenio-deposit, invenio-files-rest, invenio-i18n, invenio-indexer, invenio-jsonschemas, invenio-logging, invenio-mail, invenio-marc21, invenio-oaiserver, invenio-oauth2server, invenio-oauthclient, invenio-pidstore, invenio-queues, invenio-records, invenio-records-files, invenio-records-rest, invenio-records-ui, invenio-rest, invenio-search, invenio-search-ui, invenio-stats
+flask==2.2.5             # via flask-alembic, flask-assets, flask-babelex, flask-breadcrumbs, flask-celeryext, flask-collect, flask-cors, flask-kvsession, flask-login, flask-mail, flask-menu, flask-oauthlib, flask-principal, flask-security, flask-sqlalchemy, flask-wtf, invenio-access, invenio-accounts, invenio-assets, invenio-base, invenio-celery, invenio-config, invenio-db, invenio-deposit, invenio-files-rest, invenio-i18n, invenio-indexer, invenio-jsonschemas, invenio-logging, invenio-mail, invenio-marc21, invenio-oaiserver, invenio-oauth2server, invenio-oauthclient, invenio-pidstore, invenio-queues, invenio-records, invenio-records-files, invenio-records-rest, invenio-records-ui, invenio-rest, invenio-search, invenio-search-ui, invenio-stats
 fs==0.5.4                 # via invenio-files-rest
 future==0.16.0            # via cookiecutter, invenio-accounts
 httplib2==0.9.2
@@ -98,7 +98,7 @@ invenio-search==1.0.0a10
 invenio-stats==1.0.0a9
 itsdangerous==0.24        # via flask, flask-kvsession, flask-security
 jinja2-time==0.2.0        # via cookiecutter
-jinja2==2.8               # via cookiecutter, flask, flask-babelex, jinja2-time
+jinja2==3.1.4               # via cookiecutter, flask, flask-babelex, jinja2-time
 jsonpatch==1.16           # via invenio-records
 jsonpointer==1.10         # via jsonpatch
 jsonref==0.1              # via invenio-jsonschemas, invenio-records
@@ -145,7 +145,7 @@ validators==0.11.0        # via wtforms-components
 vine==1.1.4               # via amqp
 webargs==1.4.0            # via invenio-files-rest, invenio-oaiserver, invenio-records-rest
 webassets==0.12.0         # via flask-assets, invenio-assets
-werkzeug==0.11.11         # via flask, flask-kvsession, flask-wtf, jsonresolver
+werkzeug==3.0.6         # via flask, flask-kvsession, flask-wtf, jsonresolver
 whichcraft==0.4.0         # via cookiecutter
 wtforms-alchemy==0.16.1   # via invenio-oauth2server
 wtforms-components==0.10.0  # via wtforms-alchemy

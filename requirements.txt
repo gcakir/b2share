@@ -48,7 +48,7 @@ flask-babelex==0.9.3      # via flask-security, invenio-accounts, invenio-deposi
 flask-breadcrumbs==0.4.0  # via invenio-accounts, invenio-oauth2server, invenio-oauthclient
 flask-celeryext==0.3.0    # via invenio-celery, invenio-files-rest, invenio-indexer, invenio-records
 flask-collect==1.2.2      # via invenio-assets
-flask-cors==3.0.2         # via invenio-rest
+flask-cors==6.0.0         # via invenio-rest
 flask-kvsession==0.6.2    # via invenio-accounts
 flask-login==0.3.2
 flask-mail==0.9.1         # via flask-security, invenio-mail
